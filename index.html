@@ -1,0 +1,1143 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadro dos Sonhos - Jornada Espiritual</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+<style>
+:root {
+    --primary: #2c3e50;
+    --secondary: #34495e;
+    --accent: #e74c3c;
+    --text: #2c3e50;
+    --bg: #f5f6fa;
+    --card-bg: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --verse-bg: #edf2f7;
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --text-color: #2c3e50;
+    --background-color: #ecf0f1;
+    --card-background: rgba(255, 255, 255, 0.9);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --primary: #ecf0f1;
+    --secondary: #bdc3c7;
+    --accent: #e74c3c;
+    --text: #ecf0f1;
+    --bg: #2c3e50;
+    --card-bg: #34495e;
+    --shadow: rgba(255, 255, 255, 0.1);
+    --verse-bg: #243342;
+    --primary-color: #ecf0f1;
+    --secondary-color: #bdc3c7;
+    --accent-color: #3498db;
+    --text-color: #ecf0f1;
+    --background-color: #2c3e50;
+    --card-background: rgba(52, 73, 94, 0.9);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--card-bg);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px var(--shadow);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 60px 0;
+    background: url('https://images.pexels.com/photos/2019331/pexels-photo-2019331.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #fff;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.life-area {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 15px var(--shadow);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.life-area:hover {
+    transform: translateY(-5px);
+}
+
+.area-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.verse-box {
+    background: var(--verse-bg);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-style: italic;
+}
+
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.image-grid img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .area-title {
+        font-size: 1.5rem;
+    }
+    
+    .life-area {
+        padding: 20px;
+    }
+}
+
+/* Particle Animation */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: var(--shadow);
+    border-radius: 50%;
+    animation: moveParticle 15s infinite linear;
+}
+
+@keyframes moveParticle {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(100vw, 100vh);
+    }
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.pexels.com/photos/2019331/pexels-photo-2019331.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    opacity: 0.03;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    padding: 3rem 0;
+    position: relative;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card-background);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px var(--shadow-color),
+               -4px -4px 8px rgba(255, 255, 255, 0.5);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.card {
+    background: var(--card-background);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 8px 8px 16px var(--shadow-color),
+               -8px -8px 16px rgba(255, 255, 255, 0.1);
+}
+
+.card h2 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.verse {
+    font-style: italic;
+    color: var(--secondary-color);
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: 3px solid var(--accent-color);
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 5px;
+}
+
+.checklist {
+    list-style: none;
+}
+
+.checklist li {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-wrapper {
+    margin-right: 10px;
+}
+
+.checkbox {
+    display: none;
+}
+
+.checkbox + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox:checked + label:after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+.progress-container {
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 5px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+</style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="particles" id="particles"></div>
+
+    <header data-aos="fade-down">
+        <h1>Quadro dos Sonhos</h1>
+        <p style="color: #fff; position: relative; font-size: 1.2rem;">
+            Uma jornada de transformação e crescimento - Lucas Lessa
+        </p>
+    </header>
+
+    <div class="container">
+
+
+        <section class="life-area" data-aos="fade-up">
+            <div class="grid">
+                <!-- Vida Espiritual -->
+                <div class="card" data-aos="fade-up">
+                    <h2><i class="fas fa-pray"></i> Vida Espiritual</h2>
+                    <div class="verse">
+                        "Mas buscai primeiro o reino de Deus, e a sua justiça, e todas essas coisas vos serão acrescentadas." (Mateus 6:33)
+                    </div>
+                    <ul class="checklist">
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="spiritual1" class="checkbox">
+                                <label for="spiritual1"></label>
+                            </div>
+                            Desenvolver uma rotina de devocional.                     
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="spiritual2" class="checkbox">
+                                <label for="spiritual2"></label>
+                            </div>
+                            Finalizar a leitura da Biblia
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="spiritual3" class="checkbox">
+                                <label for="spiritual3"></label>
+                            </div>
+                            Ler um livro espiritual por mês
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="spiritual4" class="checkbox">
+                                <label for="spiritual4"></label>
+                            </div>
+                            Conquistar um novo nivel de intimidade com DEUS
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="spiritual4" class="checkbox">
+                                <label for="spiritual4"></label>
+                            </div>
+                            Vida de oração verdadeira e sem limites
+                        </li>
+                         <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="spiritual4" class="checkbox">
+                                <label for="spiritual4"></label>
+                            </div>
+                           Ouvir mais a Deus
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="spiritual5" class="checkbox">
+                                <label for="spiritual5"></label>
+                            </div>
+                           Buscar por "Conhecimento" e "Discernimento". 
+                        </li>
+                       
+                    </ul>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            <div class="image-grid">
+                <img src="https://images.pexels.com/photos/1112048/pexels-photo-1112048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Biblia">
+                <img src="data:image/jpeg;base64,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" alt="Meditação">
+            </div>
+        </section>
+        <!-- ------------------------------------------------------------------------------------------------ -->
+        <!-- Vida ministerial -->
+        <section class="life-area" data-aos="fade-up">
+            <div class="grid">
+                <!-- Vida Espiritual -->
+                <div class="card" data-aos="fade-up">
+                    <h2><i class="fas fa-hands-helping"></i> Vida Ministerial/Serviço</h2>
+                    <div class="verse">
+                        "Porque somos criação de Deus realizada em Cristo Jesus para fazermos boas obras, as quais Deus preparou antes para nós as praticarmos."
+                        (Efésios 2:10)
+                        
+                        
+                    </div>
+                    <ul class="checklist">
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="med1" class="checkbox">
+                                <label for="med1"></label>
+                            </div>
+                            Dedicar tempo para ajudar outras pessoas (voluntariado).
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="med2" class="checkbox">
+                                <label for="med2"></label>
+                            </div>
+                            Iniciar ou fortalecer um projeto social.
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="med3" class="checkbox">
+                                <label for="med3"></label>
+                            </div>
+                            Iniciar uma Celula.
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="med4" class="checkbox">
+                                <label for="med4"></label>
+                            </div>
+                            Fazer cursos ou formações na área da Igreja.
+                        </li>
+
+                         <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="med5" class="checkbox">
+                                <label for="med5"></label>
+                            </div>
+                            Participação de Eventos.
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="med5" class="checkbox">
+                                <label for="med5"></label>
+                            </div>
+                            Trazer um volume de dinheiro ao projeto parceiro de Deus.
+                        </li>
+                    </ul>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            <div class="image-grid">
+                <img src="https://images.pexels.com/photos/6646914/pexels-photo-6646914.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Momento espiritual">
+                <img src="https://images.pexels.com/photos/2014775/pexels-photo-2014775.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Meditação">
+            </div>
+        </section>
+         <!-- ------------------------------------------------------------------------------------------------ -->
+
+  <!-- Vida emocional -->
+        <section class="life-area" data-aos="fade-up">
+            <div class="grid">
+                <!-- Vida Espiritual -->
+                <div class="card" data-aos="fade-up">
+                    <h2><i class="fa-solid fa-brain"></i> Vida Emocional</h2>
+                    <div class="verse">
+                        "Entregue o seu caminho ao Senhor; confie nele, e ele agirá." (Salmos 37:5)
+                        
+                        
+                    </div>
+                    <ul class="checklist">
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="emocional1" class="checkbox">
+                                <label for="emocional1"></label>
+                            </div>
+                            Praticar autoconhecimento (terapia, journaling).
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="emocional2" class="checkbox">
+                                <label for="emocional2"></label>
+                            </div>
+                            Equilibrar emoções em situações desafiadoras (estimular essas situaçoes).
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="emocional3" class="checkbox">
+                                <label for="emocional3"></label>
+                            </div>
+                            Desenvolver hábitos que aumentem a felicidade (gratidão, mindfulness).
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="emocional4" class="checkbox">
+                                <label for="emocional4"></label>
+                            </div>
+                            Ler mais livros da Area (como os do david goggins).
+                        </li>
+
+                         <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="emocional5" class="checkbox">
+                                <label for="emocional5"></label>
+                            </div>
+                            Estabelecer metas para lidar com medos ou traumas específicos.
+                        </li>
+                        <li>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="emocional6" class="checkbox">
+                                <label for="emocional6"></label>
+                            </div>
+                            Se tornar ainda mais disciplinado e resiliente (Mente blindada)
+                        </li>
+                    </ul>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            <div class="image-grid">
+                <img src="https://a-static.mlcdn.com.br/470x352/livro-nunca-e-hora-de-parar-nada-pode-me-ferir-david-goggins/livrariassis/lvr3967-2/acfd19594fc592ecc46bcea1b9cb5f65.jpeg" alt="Momento espiritual">
+                <img src="https://images.pexels.com/photos/3015481/pexels-photo-3015481.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Meditação">
+            </div>
+        </section>
+
+
+
+
+          <!-- ------------------------------------------------------------------------------------------------ -->
+
+
+     <!-- Vida Relacionamentos -->
+     <section class="life-area" data-aos="fade-up">
+        <div class="grid">
+            <!-- Vida Espiritual -->
+            <div class="card" data-aos="fade-up">
+                <h2><i class="fas fa-ring"></i> Relacionamentos</h2>
+                <div class="verse">
+                    "Acima de tudo, porém, revistam-se do amor, que é o elo perfeito." (Colossenses 3:14)
+                 
+                </div>
+                <ul class="checklist">
+                    <li>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="relacionamento1" class="checkbox">
+                            <label for="relacionamento1"></label>
+                        </div>
+                        Fortalecer amizades verdadeiras.
+                    </li>
+                    <li>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="relacionamento2" class="checkbox">
+                            <label for="relacionamento2"></label>
+                        </div>
+                        Trabalhar na comunicação e empatia em relacionamentos.
+                    </li>
+                    <li>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="relacionamento3" class="checkbox">
+                            <label for="relacionamento3"></label>
+                        </div>
+                        Fazer novas conexões saudáveis.
+                    </li>
+                    <li>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="relacionamento4" class="checkbox">
+                            <label for="relacionamento4"></label>
+                        </div>
+                        Conhecer uma mulher de Deus, que ame mais a ele do que a mim.
+                    </li>
+
+                </ul>
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        <div class="image-grid">
+            <img src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Momento espiritual">
+            <img src="https://images.pexels.com/photos/1415131/pexels-photo-1415131.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Meditação">
+        </div>
+    </section>
+
+
+
+
+
+           <!-- ------------------------------------------------------------------------------------------------ -->
+
+
+ <!-- Vida financeira -->
+ <section class="life-area" data-aos="fade-up">
+    <div class="grid">
+        <!-- Vida Espiritual -->
+        <div class="card" data-aos="fade-up">
+            <h2><i class="fa-solid fa-coins"></i> Vida Financeira</h2>
+            <div class="verse">
+                "O Senhor te abrirá o seu bom tesouro, o céu, para dar chuva à tua terra no seu tempo, e para abençoar toda a obra das tuas mãos; e emprestarás a muitas nações, porém tu não tomarás emprestado."
+                    (Deuteronômio 28:12)
+                
+                
+            </div>
+            <ul class="checklist">
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="finaceira1" class="checkbox">
+                        <label for="finaceira1"></label>
+                    </div>
+                    Conquistar o primeiro Milhão
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="finaceira2" class="checkbox">
+                        <label for="finaceira2"></label>
+                    </div>
+                   Estabelecer uma meta de economia
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="finaceira3" class="checkbox">
+                        <label for="finaceira3"></label>
+                    </div>
+                    Criar fontes de renda extra ou passiva.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="finaceira4" class="checkbox">
+                        <label for="finaceira4"></label>
+                    </div>
+                    Fazer um planejamento financeiro mensal/anual.
+                </li>
+
+                 <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="finaceira5" class="checkbox">
+                        <label for="finaceira5"></label>
+                    </div>
+                    Investir em algo de longo prazo (cursos, ativos, bens, Bitcoin & Dolar).
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="finaceira6" class="checkbox">
+                        <label for="finaceira6"></label>
+                    </div>
+                    Salario acima de 10 mil nos 5 primeiros meses
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="finaceira7" class="checkbox">
+                        <label for="finaceira7"></label>
+                    </div>
+                    Dizimar 10% todos os meses pra obra de Deus
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="finaceira8" class="checkbox">
+                        <label for="finaceira8"></label>
+                    </div>
+                    Fechar no minimo 10 projetos por mês.
+                </li>
+            </ul>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    <div class="image-grid">
+        <img src="https://mundofinanceiro.com.br/wp-content/uploads/2017/08/planejamento-financeiro.jpg" alt="Momento espiritual">
+        <img src="https://images.pexels.com/photos/11279903/pexels-photo-11279903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Meditação">
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+            <!-- ------------------------------------------------------------------------------------------------ -->
+
+
+
+
+ <!-- Vida profissional -->
+ <section class="life-area" data-aos="fade-up">
+    <div class="grid">
+        <!-- Vida Espiritual -->
+        <div class="card" data-aos="fade-up">
+            <h2><i class="fa-solid fa-briefcase"></i> Vida  Profissional</h2>
+            <div class="verse">
+                "Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens." (Colossenses 3:23)
+                
+                
+            </div>
+            <ul class="checklist">
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional1" class="checkbox">
+                        <label for="profissional1"></label>
+                    </div>
+                    Gerenciar uma equipe.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional2" class="checkbox">
+                        <label for="profissional2"></label>
+                    </div>
+                   Trabalhar com DevOps na alencar consultorias.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional3" class="checkbox">
+                        <label for="profissional3"></label>
+                    </div>
+                    Aprender mais sobre processos empresariais (Livros/cursos).
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional4" class="checkbox">
+                        <label for="profissional4"></label>
+                    </div>
+                    Começar a Empresa de Drones
+                </li>
+
+                 <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional5" class="checkbox">
+                        <label for="profissional5"></label>
+                    </div>
+                    Criar 2 softwares produtos para ALU.
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional6" class="checkbox">
+                        <label for="profissional6"></label>
+                    </div>
+                    Participar de eventos ou redes de networking.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional7" class="checkbox">
+                        <label for="profissional7"></label>
+                    </div>
+                    Tornar-se engenheiro e obter o CREA.
+                </li>
+            </ul>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    <div class="image-grid">
+        <img src="https://images.pexels.com/photos/4427422/pexels-photo-4427422.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Momento espiritual">
+        <img src="aiv.jpg" alt="Meditação">
+    </div>
+</section>
+
+
+             <!-- ------------------------------------------------------------------------------------------------ -->
+
+
+ <!-- Saúde e Beleza -->
+ <section class="life-area" data-aos="fade-up">
+    <div class="grid">
+        <!-- Vida Espiritual -->
+        <div class="card" data-aos="fade-up">
+            <h2><i class="fa-solid fa-heart-pulse"></i> Saúde e Beleza</h2>
+            <div class="verse">
+                "Não sabeis que sois santuário de Deus e que o Espírito de Deus habita em vós?" (1 Coríntios 3:16)
+                
+                
+            </div>
+            <ul class="checklist">
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional1" class="checkbox">
+                        <label for="profissional1"></label>
+                    </div>
+                    Academia 5 vezes por semana.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional2" class="checkbox">
+                        <label for="profissional2"></label>
+                    </div>
+                   20 Barras fixas.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional3" class="checkbox">
+                        <label for="profissional3"></label>
+                    </div>
+                    Alimentação de acordo com Macros.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional4" class="checkbox">
+                        <label for="profissional4"></label>
+                    </div>
+                    Consumos de vegetais e orgânicos.
+                </li>
+
+                 <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional5" class="checkbox">
+                        <label for="profissional5"></label>
+                    </div>
+                    Cuidado com a pele e cabelo.
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional6" class="checkbox">
+                        <label for="profissional6"></label>
+                    </div>
+                    Rotina de exames medicos.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional7" class="checkbox">
+                        <label for="profissional7"></label>
+                    </div>
+                    Esportes (Corrida/Artes marciais).
+                </li>
+            </ul>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    <div class="image-grid">
+        <img src="https://images.pexels.com/photos/791763/pexels-photo-791763.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Momento espiritual">
+        <img src="https://images.pexels.com/photos/1640775/pexels-photo-1640775.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Meditação">
+    </div>
+</section>
+
+              <!-- ----------------------------------------------------------------------------------------------- -->
+
+
+
+ <!-- Saúde e Beleza -->
+ <section class="life-area" data-aos="fade-up">
+    <div class="grid">
+        <!-- Vida Espiritual -->
+        <div class="card" data-aos="fade-up">
+            <h2><i class="fa-solid fa-bicycle"></i> Lazer e Descanço </h2>
+            <div class="verse">
+                "Vinde a mim, todos os que estais cansados e sobrecarregados, e eu vos aliviarei." (Mateus 11:28)
+                
+                
+            </div>
+            <ul class="checklist">
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional1" class="checkbox">
+                        <label for="profissional1"></label>
+                    </div>
+                    Fazer Trilhas.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional2" class="checkbox">
+                        <label for="profissional2"></label>
+                    </div>
+                   Viajar sozinho.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional3" class="checkbox">
+                        <label for="profissional3"></label>
+                    </div>
+                    Sair do pais.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="profissional4" class="checkbox">
+                        <label for="profissional4"></label>
+                    </div>
+                    Ler no minimo 5 Livros.
+                </li>
+
+                 
+                
+            </ul>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    <div class="image-grid">
+        <img src="https://images.pexels.com/photos/307008/pexels-photo-307008.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Momento espiritual">
+        <img src="https://images.pexels.com/photos/3069185/pexels-photo-3069185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Meditação">
+    </div>
+</section>
+
+
+ <!-- Saúde e Beleza -->
+ <section class="life-area" data-aos="fade-up">
+    <div class="grid">
+        <!-- Vida Espiritual -->
+        <div class="card" data-aos="fade-up">
+            <h2><i class="fa-solid fa-building"></i> Extras importantes </h2>
+            <div class="verse">
+                "E acrescentou: "Seja forte e corajoso! Mãos ao trabalho! Não tenha medo nem desanime, pois Deus, o Senhor, o meu Deus, está com você. Ele não o deixará nem o abandonará até que se termine toda a construção do templo do Senhor."
+                (1 Crônicas 28:20)
+                                
+                
+                
+                
+            </div>
+            <ul class="checklist">
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras1" class="checkbox">
+                        <label for="extras1"></label>
+                    </div>
+                    Trazer meu irmão ao revisao de Vidas.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras2" class="checkbox">
+                        <label for="extras2"></label>
+                    </div>
+                   Estudar para concursos de engenharia.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras52" class="checkbox">
+                        <label for="extras52"></label>
+                    </div>
+                    Avançar meu nivel pra fluente em ingles.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras55" class="checkbox">
+                        <label for="extras55"></label>
+                    </div>
+                    Estudar mais sobre infra, Devops, ia e segurança.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras51" class="checkbox">
+                        <label for="extras51"></label>
+                    </div>
+                    Adquirir minha CNH.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras3" class="checkbox">
+                        <label for="extras3"></label>
+                    </div>
+                    fazer networks importantes.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras4" class="checkbox">
+                        <label for="extras4"></label>
+                    </div>
+                    Aumentar a produtividade.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras5" class="checkbox">
+                        <label for="extras5"></label>
+                    </div>
+                    Comprar minha casa.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras6" class="checkbox">
+                        <label for="extras6"></label>
+                    </div>
+                    Comprar um carro.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras7" class="checkbox">
+                        <label for="extras7"></label>
+                    </div>
+                    Me tornar provedor antes mesmo de ter uma familia.
+                </li>
+                <li>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="extras8" class="checkbox">
+                        <label for="extras8"></label>
+                    </div>
+                    Nunca abondonar a presença de Deus.
+                </li>
+
+                 
+                
+            </ul>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    <div class="image-grid">
+        <img src="https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Momento espiritual">
+        <img src="https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Meditação">
+        <img src="https://images.pexels.com/photos/1172207/pexels-photo-1172207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Meditação">
+    </div>
+</section>
+
+
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle i');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                button.classList.remove('fa-sun');
+                button.classList.add('fa-moon');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                button.classList.remove('fa-moon');
+                button.classList.add('fa-sun');
+            }
+        }
+
+        // Particle Animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // Random animation duration
+                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+
+        // Update progress bars based on checked items
+        document.querySelectorAll('.checklist').forEach(list => {
+            const progressBar = list.parentElement.querySelector('.progress-bar');
+            const checkboxes = list.querySelectorAll('.checkbox');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const checked = list.querySelectorAll('.checkbox:checked').length;
+                    const total = checkboxes.length;
+                    const progress = (checked / total) * 100;
+                    progressBar.style.width = `${progress}%`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
