@@ -539,7 +539,10 @@ h1 {
 
                     </div>
                     <ul class="checklist">
+<<<<<<< HEAD
                 
+=======
+>>>>>>> 0721e904ecf46f4051f3910b9b874ff5b24d0aea
                         <li>
                             <div class="checkbox-wrapper">
                                 <input type="checkbox" id="emocional2" class="checkbox">
@@ -1138,6 +1141,43 @@ h1 {
             });
         });
     </script>
+
+    <script>
+        // Salvar estado das checkboxes no localStorage
+        document.querySelectorAll('.checkbox').forEach(checkbox => {
+            // Recuperar estado ao carregar a página
+            const savedState = localStorage.getItem(checkbox.id);
+            if (savedState === "true") {
+                checkbox.checked = true;
+            }
+    
+            // Salvar estado ao alterar
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(checkbox.id, checkbox.checked);
+            });
+        });
+    
+        // Atualizar progress bar
+        document.querySelectorAll('.checklist').forEach(list => {
+            const progressBar = list.parentElement.querySelector('.progress-bar');
+            const checkboxes = list.querySelectorAll('.checkbox');
+    
+            const updateProgressBar = () => {
+                const checked = list.querySelectorAll('.checkbox:checked').length;
+                const total = checkboxes.length;
+                const progress = (checked / total) * 100;
+                progressBar.style.width = `${progress}%`;
+            };
+    
+            // Inicializar barra de progresso
+            updateProgressBar();
+    
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgressBar);
+            });
+        });
+    </script>
+    
 </body>
 </html>
 
